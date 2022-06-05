@@ -2,59 +2,46 @@
 
 <?php 
 
-/**
- * Gosoftware Media Indonesia 2020
- * --
- * --
- * http://gosoftware.web.id
- * http://phpbego.wordpress.com
- * e-mail : cs@gosoftware.web.id
- * WA : 6285263616901
- * --
- * --
- */
-
-$mhsw = new App\Mahasiswa();
-$rows = $mhsw->tampil();
+$mhsw = new App\Campaign();
+$rows = $mhsw->init();
 
 ?>
 
 <h2>
-	DATA MAHASISWA
-	<a class="btn btn-primary float-right" href="<?php echo URL; ?>/mahasiswa/create">
-		<i class="fa fa-plus mr-2"></i> Tambah
+	Dashboard Info
+	<a class="btn btn-primary float-right" href="<?php echo URL; ?>/campaign/create">
+		<i class="fa fa-plus mr-2"></i> Add Campaign
 	</a>
 </h2>
 <table class="table table-bordered table-sm" id="dtb" data-form="dataForm">
 	<thead>
 		<tr>
 			<th>NO</th>
-			<th>NIM</th>
-			<th>NAMA</th>
-			<th>PRODI</th>
-			<th>AKSI</th>
+			<th>ID</th>
+			<th>Campaign Name</th>
+			<th>Note</th>
 		</tr>
 	</thead>
 	<tbody>
 		<?php $no=0; foreach ($rows as $row) { $no++; ?>
 			<tr>
 				<td><?php echo $no; ?></td>
-				<td><?php echo $row['mhsw_nim']; ?></td>
-				<td><?php echo $row['mhsw_nama']; ?></td>
-				<td><?php echo $row['mhsw_prodi']; ?></td>
+				<td><?php echo $row['cam_id']; ?></td>
+				<td><?php echo $row['cam_name']; ?></td>
+				<td><?php echo $row['cam_note']; ?></td>
 				<td>
 					<div class="d-flex">
-						<a href="<?php echo URL; ?>/mahasiswa/edit/<?php echo $row['_id']; ?>" class="btn btn-sm btn-warning">
+						<a href="<?php echo URL; ?>/campaign/edit/<?php echo $row['_id']; ?>" class="btn btn-sm btn-warning">
 							<i class="fa fa-edit"></i> EDIT
 						</a>
-						<a href="<?php echo URL; ?>/mahasiswa/show/<?php echo $row['_id']; ?>" class="btn btn-sm btn-info ml-2">
+						<a href="<?php echo URL; ?>/campaign/show/<?php echo $row['_id']; ?>" class="btn btn-sm btn-info ml-2">
 							<i class="fa fa-info-circle"></i> DETAIL
 						</a>
-						<form method="POST" action="<?php echo URL; ?>/mhsw_proses.php" id="deleteForm">
+						<form method="POST" action="<?php echo URL; ?>/campaign_proses.php" id="deleteForm">
 							<input type="hidden" name="_id" value="<?php echo $row['_id']; ?>">
 							<input type="hidden" name="delete">
 							<button class="btn btn-danger btn-sm ml-2">
-								<i class="fa fa-trash"></i> HAPUS
+								<i class="fa fa-trash"></i> Delete
 							</button>
 						</form>
 					</div>
@@ -69,20 +56,20 @@ $rows = $mhsw->tampil();
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="deleteModalTitle"><i class="fe fe-trash"></i> KONFIRMASI HAPUS</h5>
+				<h5 class="modal-title" id="deleteModalTitle"><i class="fe fe-trash"></i> Confirm Delete</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				Apakah anda yakin menghapus data ini?
+				Are you sure you delete this data?
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-primary" data-dismiss="modal">
-					<i class="fa fa-arrow-left"></i> BATAL
+					<i class="fa fa-arrow-left"></i> Cancel
 				</button>
 				<button type="button" class="btn btn-danger" id="btn-delete-confirm">
-					<i class="fa fa-trash"></i> HAPUS
+					<i class="fa fa-trash"></i> Delete
 				</button>
 			</div>
 		</div>

@@ -2,7 +2,7 @@ Options -Indexes
 RewriteEngine On
 
 # If you are in a subfolder, you don't need this:
-RewriteBase /free-crud-php-mongodb/
+RewriteBase /mongo_php_dashboard/
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

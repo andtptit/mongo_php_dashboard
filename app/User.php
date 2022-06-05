@@ -1,32 +1,19 @@
 <?php 
 
-/**
- * Gosoftware Media Indonesia 2020
- * --
- * --
- * http://gosoftware.web.id
- * http://phpbego.wordpress.com
- * e-mail : cs@gosoftware.web.id
- * WA : 6285263616901
- * --
- * --
- */
-
 namespace App;
 use MongoDB;
 use Carbon\Carbon;
 
-class Mahasiswa extends Controller {
+class User extends Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
 	}
 
-	public function tampil()
+	public function init()
 	{
-
-		$collection = $this->db->col_mhsw;
+		$collection = $this->db->col_user_info;
 		$rows = $collection->find([]);
 
 		return $rows;
@@ -35,19 +22,17 @@ class Mahasiswa extends Controller {
 	public function input()
 	{
 
-		$mhsw_nim = $_POST['mhsw_nim'];
-		$mhsw_nama = $_POST['mhsw_nama'];
-		$mhsw_alamat = $_POST['mhsw_alamat'];
-		$mhsw_prodi = $_POST['mhsw_prodi'];
+		$net_id = $_POST['net_id'];
+		$private_key = $_POST['private_key'];
+		$public_key = $_POST['public_key'];
 		$created_at = Carbon::now()->toDateTimeString();
 		$updated_at = "";
 
-		$collection = $this->db->col_mhsw;
+		$collection = $this->db->col_user_info;
 		$collection->insertOne([
-			'mhsw_nim' => $mhsw_nim,
-			'mhsw_nama' => $mhsw_nama,
-			'mhsw_alamat' => $mhsw_alamat,
-			'mhsw_prodi' => $mhsw_prodi,
+			'net_id' => $net_id,
+			'private_key' => $private_key,
+			'public_key' => $public_key,
 			'created_at' => $created_at,
 			'updated_at' => $updated_at
 		]);
@@ -58,7 +43,7 @@ class Mahasiswa extends Controller {
 	public function edit($id)
 	{
 
-		$collection = $this->db->col_mhsw;
+		$collection = $this->db->col_user_info;
 		$row = $collection->findOne(['_id' => new MongoDB\BSON\ObjectId($id)]);
 
 		return $row;
@@ -67,31 +52,28 @@ class Mahasiswa extends Controller {
 	public function update()
 	{
 		$_id = $_POST['_id'];
-		$mhsw_nim = $_POST['mhsw_nim'];
-		$mhsw_nama = $_POST['mhsw_nama'];
-		$mhsw_alamat = $_POST['mhsw_alamat'];
-		$mhsw_prodi = $_POST['mhsw_prodi'];
+		$net_id = $_POST['net_id'];
+		$private_key = $_POST['private_key'];
+		$public_key = $_POST['public_key'];
 		$updated_at = Carbon::now()->toDateTimeString();
 
-		$collection = $this->db->col_mhsw;
+		$collection = $this->db->col_user_info;
 		$collection->updateOne(
 			['_id' => new MongoDB\BSON\ObjectId($_id)],
 			['$set' => [
-				'mhsw_nim' => $mhsw_nim, 
-				'mhsw_nama' => $mhsw_nama,
-				'mhsw_alamat' => $mhsw_alamat,
-				'mhsw_prodi' => $mhsw_prodi,
+				'net_id' => $net_id, 
+				'private_key' => $private_key,
+				'public_key' => $public_key,
 				'updated_at' => $updated_at
 			]]
 		);
-
 		return false;
 	}
 
 	public function detail($id)
 	{
 
-		$collection = $this->db->col_mhsw;
+		$collection = $this->db->col_user_info;
 		$row = $collection->findOne(['_id' => new MongoDB\BSON\ObjectId($id)]);
 
 		return $row;
@@ -102,7 +84,7 @@ class Mahasiswa extends Controller {
 
 		$_id = $_POST['_id'];
 
-		$collection = $this->db->col_mhsw;
+		$collection = $this->db->col_user_info;
 		$collection->deleteOne(['_id' => new MongoDB\BSON\ObjectId($_id)]);
 
 		return false;

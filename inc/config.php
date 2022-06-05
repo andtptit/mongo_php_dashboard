@@ -1,16 +1,5 @@
 <?php 
 
-/**
- * Gosoftware Media Indonesia 2020
- * --
- * --
- * http://gosoftware.web.id
- * http://phpbego.wordpress.com
- * e-mail : cs@gosoftware.web.id
- * WA : 6285263616901
- * --
- * --
- */
 
 // Error reporting
 error_reporting(E_ALL);
@@ -19,7 +8,7 @@ error_reporting(E_ALL);
 session_start();
 
 // Timezine
-date_default_timezone_set("Asia/Bangkok");
+date_default_timezone_set("Asia/Ho_Chi_Minh");
 
 // Basepath
 define("BASEPATH", TRUE);
@@ -28,7 +17,7 @@ define("BASEPATH", TRUE);
 define("ROOT", dirname(__DIR__) . DIRECTORY_SEPARATOR);
 
 // Url - Silakan ubah disini
-define("URL", "http://localhost/free-crud-php-mongodb");
+define("URL", "http://localhost/mongo_php_dashboard");
 
 // Autoload
 require_once ROOT . "vendor/autoload.php";

@@ -31,7 +31,7 @@
 
 	<nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #244f91;">
 		<div class="container">
-			<a class="navbar-brand font-weight-bold" href="<?php echo URL; ?>">PHPMONGO</a>
+			<a class="navbar-brand font-weight-bold" href="<?php echo URL; ?>">SKAD DASHBOARD</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -43,12 +43,9 @@
 					</li>
 					<?php if (App\Controller::session('login') == true) { ?>
 						<li class="nav-item">
-							<a class="nav-link" href="<?php echo URL; ?>/mahasiswa">Mahasiswa</a>
+							<a class="nav-link" href="<?php echo URL; ?>/campaign">Campaign</a>
 						</li>
 					<?php } ?>
-					<li class="nav-item">
-						<a class="nav-link" href="<?php echo URL; ?>/about">About</a>
-					</li>
 				</ul>
 				<ul class="navbar-nav ml-auto">
 					<?php if (!App\Controller::session('login')) { ?>
@@ -57,7 +54,7 @@
 						</li>
 					<?php } else { ?>
 						<li class="nav-item">
-							<a class="nav-link" href="#"><i class="fa fa-user mr-2"></i> <?php echo App\Controller::session('user_name') ?></a>
+							<a class="nav-link" href="<?php echo URL; ?>/user"><i class="fa fa-user mr-2"></i> <?php echo App\Controller::session('user_name') ?></a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="<?php echo URL; ?>/logout"><i class="fa fa-sign-out mr-2"></i> Logout</a></a>
@@ -80,8 +77,7 @@
 		</main>
 
 		<footer>
-			Copyright © <?php echo date('Y') ?> All rights reserved.
-			<div><a href="http://gosoftware.web.id/" target="_blank">http://gosoftware.web.id</a></div>
+			
 		</footer>
 
 	</div>

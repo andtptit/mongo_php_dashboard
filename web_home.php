@@ -9,12 +9,28 @@
 <?php } ?>
 
 <div class="alert alert-info">
-	Create Read Update and Delete with PHP and Database MongoDB
-	<div class="my-2">Demo <strong>Username : admin, Password: admin</strong></div>
+	Conversion Today
 </div>
 
-<div class="alert alert-warning">
-	Anda membutuhkan MongoDB Server menjalankan program ini.
-</div>
+<table class="table table-bordered table-sm" id="dtb" data-form="dataForm">
+	<thead>
+		<tr>
+			<th>NO</th>
+			<th>ID</th>
+			<th>Campaign Name</th>
+			<th>Click</th>
+			<th>Conversion</th>
+		</tr>
+	</thead>
+	<tbody>
+			<tr>
+				<td>1</td>
+				<td>camid_1</td>
+				<td>Campaign 1</td>
+				<td>100</td>
+				<td>10</td>
+			</tr>
+	</tbody>
+</table>
 
 <?php unset($_SESSION['login_error']);

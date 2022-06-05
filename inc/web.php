@@ -1,47 +1,35 @@
 <?php
 
-/**
- * Gosoftware Media Indonesia 2020
- * --
- * --
- * http://gosoftware.web.id
- * http://phpbego.wordpress.com
- * e-mail : cs@gosoftware.web.id
- * WA : 6285263616901
- * --
- * --
- */
-
 $route = new App\Router();
 
 $route->add('/', function() { 
 	include "web_home.php";
 });
 
-$route->add('/mahasiswa', function() { 
-	include "mhsw_index.php";
+$route->add('/campaign', function() { 
+	include "campaigns/campaign_index.php";
 });
-$route->add('/mahasiswa/create', function() { 
-	include "mhsw_create.php";
+$route->add('/campaign/create', function() { 
+	include "campaigns/campaign_create.php";
 });
-$route->add('/mahasiswa/edit/.+', function($id) { 
-	include "mhsw_edit.php";
+$route->add('/campaign/edit/.+', function($id) { 
+	include "campaigns/campaign_edit.php";
 });
-$route->add('/mahasiswa/show/.+', function($id) { 
-	include "mhsw_show.php";
+$route->add('/campaign/show/.+', function($id) { 
+	include "campaigns/campaign_show.php";
 });
 
 $route->add('/user', function() { 
-	include "user_index.php";
+	include "users/user_index.php";
 });
 $route->add('/user/create', function() { 
-	include "user_create.php";
+	include "users/user_create.php";
 });
 $route->add('/user/edit/.+', function($id) { 
-	include "user_edit.php";
+	include "users/user_edit.php";
 });
-$route->add('/akun', function() { 
-	include "user_akun.php";
+$route->add('/user/show/.+', function($id) { 
+	include "users/user_show.php";
 });
 
 $route->add('/login', function() { 
