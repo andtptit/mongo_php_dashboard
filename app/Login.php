@@ -24,8 +24,9 @@ class Login extends Controller {
 			$_SESSION['user_id']  = $row['_id'];
 			$_SESSION['user_name']  = $row['user_name'];
 			$_SESSION['user_role'] = $row['user_role'];
+			$_SESSION['net_id'] = $row['net_id'];
 		} else {
-			$_SESSION['login_error'] = "Login tidak ditemukan!";
+			$_SESSION['login_error'] = "Login error!";
 		}
 
 		return false;

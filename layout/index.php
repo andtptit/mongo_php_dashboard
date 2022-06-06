@@ -8,7 +8,7 @@
 	<meta name="description" content="Create Read Update and Delete with PHP and Database MongoDB">
 	<meta name="author" content="Suendri">
 
-	<title>Create Read Update and Delete with PHP and Database MongoDB</title>
+	<title>SKAD Dashboard</title>
 	<link href="<?php echo URL; ?>/layout/assets/images/favicon.ico" rel="shortcut icon">
 	<link rel="stylesheet" href="<?php echo URL; ?>/layout/assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php echo URL; ?>/layout/assets/css/font-awesome.min.css">
@@ -29,6 +29,12 @@
 
 <body>
 
+	<?php
+		$isLogin = App\Controller::session('login');
+		$user_role = App\Controller::session('user_role');
+		$user_name = App\Controller::session('user_name')
+	?>
+
 	<nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #244f91;">
 		<div class="container">
 			<a class="navbar-brand font-weight-bold" href="<?php echo URL; ?>">SKAD DASHBOARD</a>
@@ -41,11 +47,20 @@
 					<li class="nav-item">
 						<a class="nav-link" href="<?php echo URL; ?>">Home</a>
 					</li>
-					<?php if (App\Controller::session('login') == true) { ?>
-						<li class="nav-item">
-							<a class="nav-link" href="<?php echo URL; ?>/campaign">Campaign</a>
-						</li>
-					<?php } ?>
+					<?php if($isLogin) { 
+						if($user_role == 'admin') {
+							?>
+							<li class="nav-item">
+								<a class="nav-link" href="<?php echo URL; ?>/admin/campaign">Campaign</a>
+							</li>
+						<?php }
+						if($user_role == 'network') {
+							?>
+							<li class="nav-item">
+								<a class="nav-link" href="<?php echo URL; ?>/network/campaign">Campaign</a>
+							</li>
+						<?php }
+					}?>
 				</ul>
 				<ul class="navbar-nav ml-auto">
 					<?php if (!App\Controller::session('login')) { ?>
@@ -54,7 +69,7 @@
 						</li>
 					<?php } else { ?>
 						<li class="nav-item">
-							<a class="nav-link" href="<?php echo URL; ?>/user"><i class="fa fa-user mr-2"></i> <?php echo App\Controller::session('user_name') ?></a>
+							<a class="nav-link" href="<?php echo URL; ?>/user"><i class="fa fa-user mr-2"></i> <?php echo $user_name; ?></a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="<?php echo URL; ?>/logout"><i class="fa fa-sign-out mr-2"></i> Logout</a></a>

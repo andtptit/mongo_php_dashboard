@@ -1,23 +1,58 @@
 <?php
 
 $route = new App\Router();
+$user_role = App\Controller::session('user_role');
 
 $route->add('/', function() { 
-	include "web_home.php";
+	include "dashboard/web_home.php";
 });
 
-$route->add('/campaign', function() { 
-	include "campaigns/campaign_index.php";
-});
-$route->add('/campaign/create', function() { 
-	include "campaigns/campaign_create.php";
-});
-$route->add('/campaign/edit/.+', function($id) { 
-	include "campaigns/campaign_edit.php";
-});
-$route->add('/campaign/show/.+', function($id) { 
-	include "campaigns/campaign_show.php";
-});
+$path = $user_role .'/campaign';
+
+if($user_role == 'admin') {
+	$route->add($path, function() { 
+		include "dashboard/admin/campaigns/campaign_index.php";
+	});
+}
+elseif($user_role == 'network') {
+	$route->add($path, function() { 
+		include "dashboard/network/campaigns/campaign_index.php";
+	});
+}
+
+if($user_role == 'admin') {
+	$route->add("admin/campaign/create", function() { 
+		include "dashboard/admin/campaigns/campaign_create.php";
+	});
+}
+elseif($user_role == 'network') {
+	$route->add("network/campaign/create", function() { 
+		include "dashboard/network/campaigns/campaign_create.php";
+	});
+}
+
+if($user_role == 'admin') {
+	$route->add("admin/campaign/edit/.+", function($id) { 
+		include "dashboard/admin/campaigns/campaign_edit.php";
+	});
+}
+elseif($user_role == 'network') {
+	$route->add("network/campaign/edit/.+", function($id) { 
+		include "dashboard/network/campaigns/campaign_edit.php";
+	});
+}
+
+if($user_role == 'admin') {
+	$route->add("admin/campaign/show/.+", function($id) { 
+		include "dashboard/admin/campaigns/campaign_show.php";
+	});
+}
+elseif($user_role == 'network') {
+	$route->add("network/campaign/show/.+", function($id) { 
+		include "dashboard/network/campaigns/campaign_show.php";
+	});
+}
+
 
 $route->add('/user', function() { 
 	include "users/user_index.php";
@@ -33,14 +68,14 @@ $route->add('/user/show/.+', function($id) {
 });
 
 $route->add('/login', function() { 
-	include "web_login.php";
+	include "dashboard/web_login.php";
 });
 $route->add('/logout', function() { 
-	include "web_logout.php";
+	include "dashboard/web_logout.php";
 });
 
 $route->add('/about', function() { 
-	include "web_about.php";
+	include "dashboard/web_about.php";
 });
 
 /*$route->add('/profil/.+', function($name) {

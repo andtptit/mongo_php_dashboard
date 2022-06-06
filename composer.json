@@ -9,7 +9,7 @@
     ],
     "require": {
         "php": "^7.4|^8.0",
-        "mongodb/mongodb": "^1.11",
+        "mongodb/mongodb": "^1.12",
         "nesbot/carbon": "^2.43"
     },
     "require-dev": {

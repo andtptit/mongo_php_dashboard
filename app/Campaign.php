@@ -23,17 +23,27 @@ class Campaign extends Controller {
 	public function input()
 	{
 
+		$net_id = $_POST['net_id'];
 		$cam_id = $_POST['cam_id'];
-		$cam_name = $_POST['cam_name'];
-		$cam_note = $_POST['cam_note'];
+		$publisher_id = $_POST['publisher_id'];
+		$cam_state = $_POST['cam_state'];
+		$cap_day = $_POST['cap_day'];
+		$mmp_id = $_POST['mmp_id'];
+		$sk_net_id = $_POST['sk_net_id'];
+		$mmp_detail = $_POST['mmp_detail'];
 		$created_at = Carbon::now()->toDateTimeString();
 		$updated_at = "";
 
 		$collection = $this->db->col_campaign;
 		$collection->insertOne([
+			'net_id' => $net_id,
 			'cam_id' => $cam_id,
-			'cam_name' => $cam_name,
-			'cam_note' => $cam_note,
+			'publisher_id' => $publisher_id,
+			'cam_state' => $cam_state,
+			'cap_day' => $cap_day,
+			'mmp_id' => $mmp_id,
+			'sk_net_id' => $sk_net_id,
+			'mmp_detail' => $mmp_detail,
 			'created_at' => $created_at,
 			'updated_at' => $updated_at
 		]);
@@ -54,8 +64,12 @@ class Campaign extends Controller {
 	{
 		$_id = $_POST['_id'];
 		$cam_id = $_POST['cam_id'];
-		$cam_name = $_POST['cam_name'];
-		$cam_note = $_POST['cam_note'];
+		$publisher_id = $_POST['publisher_id'];
+		$cam_state = $_POST['cam_state'];
+		$cap_day = $_POST['cap_day'];
+		$mmp_id = $_POST['mmp_id'];
+		$sk_net_id = $_POST['sk_net_id'];
+		$mmp_detail = $_POST['mmp_detail'];
 		$updated_at = Carbon::now()->toDateTimeString();
 
 		$collection = $this->db->col_campaign;
@@ -63,8 +77,12 @@ class Campaign extends Controller {
 			['_id' => new MongoDB\BSON\ObjectId($_id)],
 			['$set' => [
 				'cam_id' => $cam_id, 
-				'cam_name' => $cam_name,
-				'cam_note' => $cam_note,
+				'publisher_id' => $publisher_id,
+				'cam_state' => $cam_state,
+				'cap_day' => $cap_day,
+				'mmp_id' => $mmp_id,
+				'sk_net_id' => $sk_net_id,
+				'mmp_detail' => $mmp_detail,
 				'updated_at' => $updated_at
 			]]
 		);
