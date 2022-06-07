@@ -69,7 +69,7 @@
 						</li>
 					<?php } else { ?>
 						<li class="nav-item">
-							<a class="nav-link" href="<?php echo URL; ?>/user"><i class="fa fa-user mr-2"></i> <?php echo $user_name; ?></a>
+							<a class="nav-link" href="<?php echo URL . "/" . $user_role . "/user"; ?>"><i class="fa fa-user mr-2"></i> <?php echo $user_name; ?></a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="<?php echo URL; ?>/logout"><i class="fa fa-sign-out mr-2"></i> Logout</a></a>

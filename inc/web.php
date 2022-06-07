@@ -9,6 +9,7 @@ $route->add('/', function() {
 
 $path = $user_role .'/campaign';
 
+// Campaign
 if($user_role == 'admin') {
 	$route->add($path, function() { 
 		include "dashboard/admin/campaigns/campaign_index.php";
@@ -54,19 +55,55 @@ elseif($user_role == 'network') {
 }
 
 
-$route->add('/user', function() { 
-	include "users/user_index.php";
-});
-$route->add('/user/create', function() { 
-	include "users/user_create.php";
-});
-$route->add('/user/edit/.+', function($id) { 
-	include "users/user_edit.php";
-});
-$route->add('/user/show/.+', function($id) { 
-	include "users/user_show.php";
-});
+// User
+if($user_role == 'admin') {
+	$route->add("admin/user/", function() { 
+		include "dashboard/admin/users/user_index.php";
+	});
+}
+elseif($user_role == 'network') {
+	$route->add("network/user/", function() { 
+		include "dashboard/network/users/user_index.php";
+	});
+}
 
+
+if($user_role == 'admin') {
+	$route->add("admin/user/create", function() { 
+		include "dashboard/admin/users/user_create.php";
+	});
+}
+elseif($user_role == 'network') {
+	$route->add("network/user/create", function() { 
+		include "dashboard/network/users/user_create.php";
+	});
+}
+
+if($user_role == 'admin') {
+	$route->add("admin/user/edit/.+", function($id) { 
+		include "dashboard/admin/users/user_edit.php";
+	});
+}
+elseif($user_role == 'network') {
+	$route->add("network/user/edit/.+", function($id) { 
+		include "dashboard/network/users/user_edit.php";
+	});
+}
+
+
+if($user_role == 'admin') {
+	$route->add("admin/user/show/.+", function($id) { 
+		include "dashboard/admin/users/user_show.php";
+	});
+}
+elseif($user_role == 'network') {
+	$route->add("network/user/show/.+", function($id) { 
+		include "dashboard/network/users/user_show.php";
+	});
+}
+
+
+// Web Home
 $route->add('/login', function() { 
 	include "dashboard/web_login.php";
 });
