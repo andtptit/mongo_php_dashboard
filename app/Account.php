@@ -4,7 +4,7 @@ namespace App;
 use MongoDB;
 use Carbon\Carbon;
 
-class User extends Controller {
+class Account extends Controller {
 
 	public function __construct()
 	{
@@ -13,7 +13,7 @@ class User extends Controller {
 
 	public function init()
 	{
-		$collection = $this->db->col_user_info;
+		$collection = $this->db->col_users;
 		$rows = $collection->find([]);
 
 		return $rows;
@@ -21,7 +21,7 @@ class User extends Controller {
 
 	public function count()
 	{
-		$collection = $this->db->col_user_info;
+		$collection = $this->db->col_users;
 		$count = $collection->count([]);
 
 		return $count;
@@ -30,7 +30,7 @@ class User extends Controller {
 	public function getListInfo($net_id)
 	{
 
-		$collection = $this->db->col_user_info;
+		$collection = $this->db->col_users;
 		$list = $collection->find([ 'net_id' => $net_id]);
 
 		return $list;
@@ -40,20 +40,20 @@ class User extends Controller {
 	{
 
 		$net_id = $_POST['net_id'];
-		$sk_net_id = $_POST['sk_net_id'];
-		$private_key = $_POST['private_key'];
-		$public_key = $_POST['public_key'];
+		$net_name = $_POST['net_name'];
+		$user_name = $_POST['user_name'];
+		$user_password = $_POST['user_password'];
+		$user_role = $_POST['user_role'];
 		$created_at = Carbon::now()->toDateTimeString();
-		$updated_at = "";
 
-		$collection = $this->db->col_user_info;
+		$collection = $this->db->col_users;
 		$collection->insertOne([
 			'net_id' => $net_id,
-			'sk_net_id' => $sk_net_id,
-			'private_key' => $private_key,
-			'public_key' => $public_key,
-			'created_at' => $created_at,
-			'updated_at' => $updated_at
+			'net_name' => $net_name,
+			'user_name' => $user_name,
+			'user_password' => $user_password,
+			'user_role' => $user_role,
+			'created_at' => $created_at
 		]);
 
 		return false;
@@ -62,7 +62,7 @@ class User extends Controller {
 	public function edit($id)
 	{
 
-		$collection = $this->db->col_user_info;
+		$collection = $this->db->col_users;
 		$row = $collection->findOne(['_id' => new MongoDB\BSON\ObjectId($id)]);
 
 		return $row;
@@ -72,29 +72,28 @@ class User extends Controller {
 	{
 		$_id = $_POST['_id'];
 		$net_id = $_POST['net_id'];
-		$sk_net_id = $_POST['sk_net_id'];
-		$private_key = $_POST['private_key'];
-		$public_key = $_POST['public_key'];
-		$updated_at = Carbon::now()->toDateTimeString();
+		$net_name = $_POST['net_name'];
+		$user_name = $_POST['user_name'];
+		$user_role = $_POST['user_role'];
 
-		$collection = $this->db->col_user_info;
+		$collection = $this->db->col_users;
 		$collection->updateOne(
 			['_id' => new MongoDB\BSON\ObjectId($_id)],
 			['$set' => [
-				'net_id' => $net_id,
-				'sk_net_id' => $sk_net_id,
-				'private_key' => $private_key,
-				'public_key' => $public_key,
-				'updated_at' => $updated_at
+				'net_id' => $net_id, 
+				'net_name' => $net_name,
+				'user_name' => $user_name,
+				'user_role' => $user_role,
 			]]
 		);
+
 		return false;
 	}
 
 	public function detail($id)
 	{
 
-		$collection = $this->db->col_user_info;
+		$collection = $this->db->col_users;
 		$row = $collection->findOne(['_id' => new MongoDB\BSON\ObjectId($id)]);
 
 		return $row;
@@ -105,7 +104,7 @@ class User extends Controller {
 
 		$_id = $_POST['_id'];
 
-		$collection = $this->db->col_user_info;
+		$collection = $this->db->col_users;
 		$collection->deleteOne(['_id' => new MongoDB\BSON\ObjectId($_id)]);
 
 		return false;

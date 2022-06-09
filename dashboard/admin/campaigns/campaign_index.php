@@ -6,6 +6,8 @@ $campaign = new App\Campaign();
 $rows = $campaign->init();
 
 $user_role = App\Controller::session('user_role');
+$net_id = App\Controller::session('net_id');
+
 ?>
 
 <h2>

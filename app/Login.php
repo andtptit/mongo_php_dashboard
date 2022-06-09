@@ -32,4 +32,28 @@ class Login extends Controller {
 		return false;
 	}
 
+	public function signup()
+	{
+
+		$net_id = $_POST['net_id'];
+		$sk_net_id = $_POST['sk_net_id'];
+		$user_name = $_POST['user_name'];
+		$user_password = $_POST['user_password'];
+		$user_role = $_POST['user_role'];
+
+		$password_hash = password_hash($user_password, PASSWORD_DEFAULT);
+
+		$collection = $this->db->col_users;
+
+		$collection->insertOne([
+			'net_id' => $net_id,
+			'sk_net_id' => $sk_net_id,
+			'user_name' => $user_name,
+			'user_password' => $password_hash,
+			'user_role' => $user_role
+		]);
+
+		return false;
+	}
+
 }

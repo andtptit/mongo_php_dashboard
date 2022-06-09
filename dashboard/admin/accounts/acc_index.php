@@ -2,45 +2,48 @@
 
 <?php 
 
-$user = new App\User();
-$rows = $user->init();
-$count = $user->count();
+$account = new App\Account();
+$rows = $account->init();
+$count = $account->count();
 
 $user_role = App\Controller::session('user_role');
 
+if($user_role != 'admin')exit
 ?>
 
 <h2>
-	Setup SKAD Info
-	<a class="btn btn-primary float-right" href="<?php echo URL . "/" . $user_role .  "/user"; ?>/create">
-		<i class="fa fa-plus mr-2"></i> Add SKAD Info
+	List Account Network
+	<a class="btn btn-primary float-right" href="<?php echo URL . "/account"; ?>/create">
+		<i class="fa fa-plus mr-2"></i> Add Account
 	</a>
 </h2>
 <table class="table table-bordered table-sm" id="dtb" data-form="dataForm">
 	<thead>
 		<tr>
+			<th>NO</th>
 			<th>Net ID</th>
-			<th>SK Net ID</th>
-			<th>Private Key</th>
-			<th>Public Key</th>
+			<th>Net Name</th>
+			<th>User Name</th>
+			<th>Role</th>
 		</tr>
 	</thead>
 	<tbody>
 		<?php $no=0; foreach ($rows as $row) { $no++;?>
 			<tr>
+				<td><?php echo $no; ?></td>
 				<td><?php echo $row['net_id']; ?></td>
-				<td><?php echo $row['sk_net_id']; ?></td>
-				<td><?php echo $row['private_key']; ?></td>
-				<td><?php echo $row['public_key']; ?></td>
+				<td><?php echo $row['net_name']; ?></td>
+				<td><?php echo $row['user_name']; ?></td>
+				<td><?php echo $row['user_role']; ?></td>
 				<td>
 					<div class="d-flex">
-						<a href="<?php echo URL . "/" . $user_role; ?>/user/edit/<?php echo $row['_id']; ?>" class="btn btn-sm btn-warning">
+						<a href="<?php echo URL; ?>/account/edit/<?php echo $row['_id']; ?>" class="btn btn-sm btn-warning">
 							<i class="fa fa-edit"></i> EDIT
 						</a>
-						<a href="<?php echo URL . "/" . $user_role; ?>/user/show/<?php echo $row['_id']; ?>" class="btn btn-sm btn-info ml-2">
+						<a href="<?php echo URL; ?>/account/show/<?php echo $row['_id']; ?>" class="btn btn-sm btn-info ml-2">
 							<i class="fa fa-info-circle"></i> DETAIL
 						</a>
-						<form method="POST" action="<?php echo URL . "/dashboard/" . $user_role; ?>/users/user_proses.php" id="deleteForm">
+						<form method="POST" action="<?php echo URL . "/dashboard/" . $user_role; ?>/accounts/acc_proses.php" id="deleteForm">
 							<input type="hidden" name="_id" value="<?php echo $row['_id']; ?>">
 							<input type="hidden" name="delete">
 							<button class="btn btn-danger btn-sm ml-2">

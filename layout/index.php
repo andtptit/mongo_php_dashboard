@@ -53,6 +53,9 @@
 							<li class="nav-item">
 								<a class="nav-link" href="<?php echo URL; ?>/admin/campaign">Campaign</a>
 							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="<?php echo URL; ?>/account">Network</a>
+							</li>
 						<?php }
 						if($user_role == 'network') {
 							?>

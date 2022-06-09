@@ -20,6 +20,15 @@ class Campaign extends Controller {
 		return $rows;
 	}
 
+	public function getListCampaign($net_id)
+	{
+
+		$collection = $this->db->col_campaign;
+		$list = $collection->find([ 'net_id' => $net_id]);
+
+		return $list;
+	}
+
 	public function input()
 	{
 

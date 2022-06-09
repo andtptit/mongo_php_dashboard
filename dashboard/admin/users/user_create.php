@@ -4,6 +4,7 @@
 
 $user = new App\User();
 $user_role = App\Controller::session('user_role');
+$net_id = App\Controller::session('net_id');
 
 ?>
 
@@ -12,13 +13,19 @@ $user_role = App\Controller::session('user_role');
 	<div class="form-group row">
 		<label class="col-sm-2">Net ID</label>
 		<div class="col-sm-10">
-			<input class="form-control" type="text" name="net_id" placeholder="" required="" autofocus="">
+			<input class="form-control" type="text" name="net_id" required=""  value="<?php echo $net_id ?>">
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2">SK Net ID</label>
+		<div class="col-sm-10">
+			<input class="form-control" type="text" name="sk_net_id" placeholder="" required="" autofocus="">
 		</div>
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-2">Private Key</label>
 		<div class="col-sm-10">
-			<input class="form-control" type="text" name="private_key" placeholder="" required="">
+			<textarea rows="3" class="form-control" name="private_key"></textarea>
 		</div>
 	</div>
 	<div class="form-group row">

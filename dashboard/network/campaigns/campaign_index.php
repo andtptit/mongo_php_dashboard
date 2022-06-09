@@ -6,6 +6,9 @@ $campaign = new App\Campaign();
 $rows = $campaign->init();
 
 $user_role = App\Controller::session('user_role');
+$net_id = App\Controller::session('net_id');
+
+$list = $campaign->getListCampaign($net_id);
 ?>
 
 <h2>
@@ -29,7 +32,7 @@ $user_role = App\Controller::session('user_role');
 		</tr>
 	</thead>
 	<tbody>
-		<?php $no=0; foreach ($rows as $row) { $no++; ?>
+		<?php $no=0; foreach ($list as $row) { $no++; ?>
 			<tr>
 				<td><?php echo $no; ?></td>
 				<td><?php echo $row['net_id']; ?></td>

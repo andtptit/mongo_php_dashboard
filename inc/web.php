@@ -103,10 +103,33 @@ elseif($user_role == 'network') {
 }
 
 
+// Acount
+$route->add("account/", function() { 
+	include "dashboard/admin/accounts/acc_index.php";
+});
+
+
+$route->add("account/create", function() { 
+	include "dashboard/admin/accounts/acc_create.php";
+});
+
+
+$route->add("account/edit/.+", function($id) { 
+	include "dashboard/admin/accounts/acc_edit.php";
+});
+
+
+$route->add("account/show/.+", function($id) { 
+	include "dashboard/admin/accounts/acc_show.php";
+});
+
+
+
 // Web Home
 $route->add('/login', function() { 
 	include "dashboard/web_login.php";
 });
+
 $route->add('/logout', function() { 
 	include "dashboard/web_logout.php";
 });
