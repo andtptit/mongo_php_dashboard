@@ -50,7 +50,7 @@ $net_id = App\Controller::session('net_id');
 						<a href="<?php echo URL . "/" . $user_role; ?>/campaign/show/<?php echo $row['_id']; ?>" class="btn btn-sm btn-info ml-2">
 							<i class="fa fa-info-circle"></i> DETAIL
 						</a>
-						<form method="POST" action="<?php echo URL . "/dashboard/" . $user_role; ?>/campaigns/campaign_proses.php" id="deleteForm">
+						<form method="POST" action="<?php echo URL . "/screens/" . $user_role; ?>/campaigns/campaign_proses.php" id="deleteForm">
 							<input type="hidden" name="_id" value="<?php echo $row['_id']; ?>">
 							<input type="hidden" name="delete">
 							<button class="btn btn-danger btn-sm ml-2">

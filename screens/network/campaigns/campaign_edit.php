@@ -6,10 +6,12 @@ $campaign = new App\Campaign();
 $row = $campaign->edit($id);
 
 $user_role = App\Controller::session('user_role');
+
+$arr_state = ['approved', 'pending', 'archived'];
 ?>
 
 <h2>Edit Campaign</h2>
-<form method="POST" action="<?php echo URL . "/dashboard/" . $user_role; ?>/campaigns/campaign_proses.php">
+<form method="POST" action="<?php echo URL . "/screens/" . $user_role; ?>/campaigns/campaign_proses.php">
 	<input type="hidden" name="_id" value="<?php echo $id; ?>">
 	<div class="form-group row">
 		<label class="col-sm-2">Cam ID</label>
@@ -26,7 +28,17 @@ $user_role = App\Controller::session('user_role');
 	<div class="form-group row">
 		<label class="col-sm-2">State</label>
 		<div class="col-sm-10">
-			<input class="form-control" type="text" name="cam_state" value="<?php echo $row['cam_state']; ?>" placeholder="" required="" autofocus="">
+			<select class="form-control" name="cam_state">
+				<option value="<?php echo $row['cam_state']; ?>"><?php echo ucfirst($row['cam_state']) ?></option>
+				<?php 
+					foreach ($arr_state as $state) {
+						if ($state != $row['cam_state']) {
+							echo '<option value="' . $state . '">' . ucfirst($state) . '</option>';
+						}
+					}
+				?>
+			</select>
+			<!-- <input class="form-control" type="text" name="cam_state" value="<?php echo $row['cam_state']; ?>" placeholder="" required="" autofocus=""> -->
 		</div>
 	</div>
 	<div class="form-group row">

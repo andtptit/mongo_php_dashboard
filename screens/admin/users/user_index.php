@@ -2,56 +2,45 @@
 
 <?php 
 
-$campaign = new App\Campaign();
-$rows = $campaign->init();
+$user = new App\User();
+$rows = $user->init();
+$count = $user->count();
 
 $user_role = App\Controller::session('user_role');
-$net_id = App\Controller::session('net_id');
 
-$list = $campaign->getListCampaign($net_id);
 ?>
 
 <h2>
-	Dashboard Info
-	<a class="btn btn-primary float-right" href="<?php echo URL . "/" . $user_role; ?>/campaign/create">
-		<i class="fa fa-plus mr-2"></i> Add Campaign
+	Setup SKAD Info
+	<a class="btn btn-primary float-right" href="<?php echo URL . "/" . $user_role .  "/user"; ?>/create">
+		<i class="fa fa-plus mr-2"></i> Add SKAD Info
 	</a>
 </h2>
 <table class="table table-bordered table-sm" id="dtb" data-form="dataForm">
 	<thead>
 		<tr>
-			<th>NO</th>
 			<th>Net ID</th>
-			<th>Cam ID</th>
-			<th>Publisher ID</th>
-			<th>State</th>
-			<th>Conversion Day</th>
-			<th>MMP</th>
-			<th>SK Network ID</th>
-			<th>MMP Detail</th>
+			<th>SK Net ID</th>
+			<th>Private Key</th>
+			<th>Public Key</th>
 		</tr>
 	</thead>
 	<tbody>
-		<?php $no=0; foreach ($list as $row) { $no++; ?>
+		<?php $no=0; foreach ($rows as $row) { $no++;?>
 			<tr>
-				<td><?php echo $no; ?></td>
 				<td><?php echo $row['net_id']; ?></td>
-				<td><?php echo $row['cam_id']; ?></td>
-				<td><?php echo $row['publisher_id']; ?></td>
-				<td><?php echo $row['cam_state']; ?></td>
-				<td><?php echo $row['cap_day']; ?></td>
-				<td><?php echo $row['mmp_id']; ?></td>
 				<td><?php echo $row['sk_net_id']; ?></td>
-				<td><?php echo $row['mmp_detail']; ?></td>
+				<td><?php echo $row['private_key']; ?></td>
+				<td><?php echo $row['public_key']; ?></td>
 				<td>
 					<div class="d-flex">
-						<a href="<?php echo URL . "/" . $user_role; ?>/campaign/edit/<?php echo $row['_id']; ?>" class="btn btn-sm btn-warning">
+						<a href="<?php echo URL . "/" . $user_role; ?>/user/edit/<?php echo $row['_id']; ?>" class="btn btn-sm btn-warning">
 							<i class="fa fa-edit"></i> EDIT
 						</a>
-						<a href="<?php echo URL . "/" . $user_role; ?>/campaign/show/<?php echo $row['_id']; ?>" class="btn btn-sm btn-info ml-2">
+						<a href="<?php echo URL . "/" . $user_role; ?>/user/show/<?php echo $row['_id']; ?>" class="btn btn-sm btn-info ml-2">
 							<i class="fa fa-info-circle"></i> DETAIL
 						</a>
-						<form method="POST" action="<?php echo URL . "/dashboard/" . $user_role; ?>/campaigns/campaign_proses.php" id="deleteForm">
+						<form method="POST" action="<?php echo URL . "/screens/" . $user_role; ?>/users/user_proses.php" id="deleteForm">
 							<input type="hidden" name="_id" value="<?php echo $row['_id']; ?>">
 							<input type="hidden" name="delete">
 							<button class="btn btn-danger btn-sm ml-2">

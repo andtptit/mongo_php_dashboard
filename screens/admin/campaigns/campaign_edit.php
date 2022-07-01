@@ -9,7 +9,7 @@ $user_role = App\Controller::session('user_role');
 ?>
 
 <h2>Edit Campaign</h2>
-<form method="POST" action="<?php echo URL . "/dashboard/" . $user_role; ?>/campaigns/campaign_proses.php">
+<form method="POST" action="<?php echo URL . "/screens/" . $user_role; ?>/campaigns/campaign_proses.php">
 	<input type="hidden" name="_id" value="<?php echo $id; ?>">
 	<div class="form-group row">
 		<label class="col-sm-2">Cam ID</label>

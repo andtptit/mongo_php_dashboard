@@ -9,7 +9,7 @@ $net_id = App\Controller::session('net_id');
 ?>
 
 <h2>Add Campaign</h2>
-<form method="POST" action="<?php echo URL . "/dashboard/" . $user_role; ?>/campaigns/campaign_proses.php">
+<form method="POST" action="<?php echo URL . "/screens/" . $user_role; ?>/campaigns/campaign_proses.php">
 	<div class="form-group row">
 		<label class="col-sm-2">Net ID</label>
 		<div class="col-sm-10">
@@ -31,7 +31,12 @@ $net_id = App\Controller::session('net_id');
 	<div class="form-group row">
 		<label class="col-sm-2">State</label>
 		<div class="col-sm-10">
-			<input class="form-control" type="text" name="cam_state" placeholder="" required="">
+			<select class="form-control" type="text" name="cam_state">
+				<option value="approved">Approved</option>
+				<option value="pending">Pending</option>
+				<option value="archived">Archived</option>
+			</select>
+			<!-- <input class="form-control" type="text" name="cam_state" placeholder="" required=""> -->
 		</div>
 	</div>
 	<div class="form-group row">
@@ -59,7 +64,7 @@ $net_id = App\Controller::session('net_id');
 		</div>
 	</div>
 	<div class="form-group float-right">
-		<a href="<?php echo URL . "/" . $net_id; ?>/campaign" class="btn btn-primary">
+		<a href="<?php echo URL . "/" . $user_role; ?>/campaign" class="btn btn-primary">
 			<i class="fa fa-arrow-left mr-2"></i> Back
 		</a>
 		<button class="btn btn-success" type="submit" name="input">

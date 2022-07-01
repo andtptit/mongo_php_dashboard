@@ -9,7 +9,7 @@ $net_id = App\Controller::session('net_id');
 ?>
 
 <h2>Setup SKAD Info</h2>
-<form method="POST" action="<?php echo URL . "/dashboard/" . $user_role; ?>/users/user_proses.php">
+<form method="POST" action="<?php echo URL . "/screens/" . $user_role; ?>/users/user_proses.php">
 	<div class="form-group row">
 		<label class="col-sm-2">Net ID</label>
 		<div class="col-sm-10">

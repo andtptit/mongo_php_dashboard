@@ -16,7 +16,7 @@ $net_id = App\Controller::session('net_id');
 			<div class="card-header">Signup</div>
 
 			<div class="card-body">
-				<form method="POST" action="<?php echo URL . "/dashboard/" . $user_role; ?>/accounts/acc_proses.php">
+				<form method="POST" action="<?php echo URL . "/screens/" . $user_role; ?>/accounts/acc_proses.php">
 					<div class="form-group row">
 						<label for="email" class="col-md-4 col-form-label text-md-right">Net ID</label>
 
